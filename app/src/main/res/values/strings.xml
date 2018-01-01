@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">GitStarred</string>
     <string name="logo">logo</string>
+    <string name="loading">loading ...</string>
 </resources>
