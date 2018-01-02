@@ -4,18 +4,29 @@ package sadiki.abdeladim.gitstarred.model;
  * Created by Abdeladim SADIKI on 01/01/2018.
  */
 
-public class Repository {
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
+public class Repository {
+    @SerializedName("name")
+    @Expose
     private String repoName;
+
+    @SerializedName("description")
+    @Expose
     private String repoDesc;
-    private String avatar;
-    private String repoOwner;
+
+    @SerializedName("owner")
+    @Expose
+    private Owner repoOwner;
+
+    @SerializedName("stargazers_count")
+    @Expose
     private String nbOfStars;
 
-    public Repository(String repoName, String repoDesc, String avatar, String repoOwner, String nbOfStars) {
+    public Repository(String repoName, String repoDesc, String avatar, Owner repoOwner, String nbOfStars) {
         this.repoName = repoName;
         this.repoDesc = repoDesc;
-        this.avatar = avatar;
         this.repoOwner = repoOwner;
         this.nbOfStars = nbOfStars;
     }
@@ -36,19 +47,12 @@ public class Repository {
         this.repoDesc = repoDesc;
     }
 
-    public String getAvatar() {
-        return avatar;
-    }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public String getRepoOwner() {
+    public Owner getRepoOwner() {
         return repoOwner;
     }
 
-    public void setRepoOwner(String repoOwner) {
+    public void setRepoOwner(Owner repoOwner) {
         this.repoOwner = repoOwner;
     }
 
@@ -65,7 +69,6 @@ public class Repository {
         return "Repository{" +
                 "repoName='" + repoName + '\'' +
                 ", repoDesc='" + repoDesc + '\'' +
-                ", avatar='" + avatar + '\'' +
                 ", repoOwner='" + repoOwner + '\'' +
                 ", nbOfStars='" + nbOfStars + '\'' +
                 '}';

@@ -38,12 +38,12 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.repoName.setText(repositories.get(position).getRepoName());
         holder.repoDesc.setText(repositories.get(position).getRepoDesc());
-        holder.repoOwner.setText(repositories.get(position).getRepoOwner());
+        holder.repoOwner.setText(repositories.get(position).getRepoOwner().getName());
         holder.nbOfStars.setText(repositories.get(position).getNbOfStars());
 
         // using picasso to handel the imageView
         Picasso.with(context)
-                .load(repositories.get(position).getAvatar())
+                .load(repositories.get(position).getRepoOwner().getAvatar())
                 .placeholder(R.drawable.loading)
                 .into(holder.avatar);
     }
