@@ -63,6 +63,7 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.ViewHolder> {
             repoDesc = (TextView) view.findViewById(R.id.repoDesc);
             repoOwner = (TextView) view.findViewById(R.id.repoOwner);
             nbOfStars = (TextView) view.findViewById(R.id.nbOfStars);
+            avatar = (ImageView) view.findViewById(R.id.avatar);
         }
     }
 }
