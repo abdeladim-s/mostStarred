@@ -1,5 +1,6 @@
 package sadiki.abdeladim.gitstarred;
 
+import android.app.ProgressDialog;
 import android.app.Service;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -27,17 +28,28 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private Repository repository;
     private SwipeRefreshLayout swipe;
+    private ProgressDialog progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // set progress dialog properties first
+        progress = new ProgressDialog(this);
+        progress.setMessage("Please wait ...");
+        progress.setCancelable(false);
+        progress.show();
+
+        //set the recyclerView properties
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.smoothScrollToPosition(0);
+
+        //routine for loading JSON data
         loadData();
 
+        //SwipeRefreshLayout
         swipe = (SwipeRefreshLayout) findViewById(R.id.swipe);
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -57,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
                     List<Repository> items = response.body().getRepositories();
                     recyclerView.setAdapter(new RepoAdapter(getApplicationContext(), items));
                     recyclerView.smoothScrollToPosition(0);
-                    swipe.setRefreshing(false);
+                    swipe.setRefreshing(false); // stop the refresh after onResponse
+                    progress.hide(); // hide the progress dialog too
                 }
 
                 @Override
