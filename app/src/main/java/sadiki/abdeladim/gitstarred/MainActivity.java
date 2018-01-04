@@ -2,12 +2,16 @@ package sadiki.abdeladim.gitstarred;
 
 import android.app.ProgressDialog;
 import android.app.Service;
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -57,6 +61,29 @@ public class MainActivity extends AppCompatActivity {
                 loadData();
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.trending:
+                break;
+            case R.id.about:
+                Intent i = new Intent(this, About.class);
+                startActivity(i);
+                break;
+            default:
+                break;
+        }
+
+        return true;
     }
 
     private void loadData(){
