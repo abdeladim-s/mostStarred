@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
                     List<Repository> items = response.body().getRepositories();
                     recyclerView.setAdapter(new RepoAdapter(getApplicationContext(), items));
                     recyclerView.smoothScrollToPosition(0);
+                    swipe.setRefreshing(false);
                 }
 
                 @Override
